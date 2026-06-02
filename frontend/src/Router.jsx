@@ -10,7 +10,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register'
 import Page404 from './components/Page404';
-import Profile from './components/Profile';
+import Profile from './components/profile';
 import PageUserDeleted from './components/profile/PageUserDeleted';
 import Group from './components/groups';
 import CreateGroup from './components/groups/CreateGroup';
