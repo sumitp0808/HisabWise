@@ -5,7 +5,6 @@ import gravatarUrl from "gravatar-url";
 
 import Logo from "../../components/Logo";
 import NavSection from "../../components/NavSection";
-import Copyright from "../../components/Copyright";
 
 import navConfig from "./NavConfig";
 import dataConfig from "../../config.json";
@@ -71,7 +70,9 @@ export default function DashboardSidebar({
 
       {/* Footer */}
       <div className="p-4">
-        <Copyright />
+        <div className="mt-6 text-center text-sm text-gray-500">
+            © {new Date().getFullYear()} HisabWise
+        </div>
       </div>
     </>
   );
@@ -90,7 +91,7 @@ export default function DashboardSidebar({
       <aside
         className={`
           fixed top-0 left-0 z-50
-          h-screen w-[280px]
+          h-screen w-70
           bg-white border-r
           flex flex-col
           transition-transform duration-300
@@ -109,7 +110,7 @@ export default function DashboardSidebar({
       <aside
         className="
           hidden lg:flex
-          h-screen w-[280px]
+          h-screen w-70
           flex-col
           border-r border-dashed
           bg-white

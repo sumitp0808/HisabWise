@@ -51,7 +51,7 @@ export default function Register() {
       <div className="hidden md:flex md:w-1/2 bg-slate-50 items-center justify-center p-10">
         <div className="max-w-md">
           <h1 className="text-4xl font-bold mb-6">
-            Manage expenses more effectively with SplitApp!
+            Manage expenses more effectively with HisabWise!
           </h1>
 
           <img
@@ -219,7 +219,7 @@ export default function Register() {
 
           {/* Footer */}
           <div className="mt-10 text-center text-sm text-gray-500">
-            © {new Date().getFullYear()} SplitApp
+            © {new Date().getFullYear()} HisabWise
           </div>
         </div>
       </div>
