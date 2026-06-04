@@ -60,6 +60,7 @@ export default function Dashboard() {
   }
 
   return (
+  <>
     <div className="mx-auto max-w-7xl space-y-6">
       <AlertBanner
         showAlert={alert}
@@ -98,27 +99,22 @@ export default function Dashboard() {
         </div>
       ) : (
         <>
-          {/* Summary */}
-          <SummaryCards
-            userTotalExp={userExp?.total}
-          />
+          <SummaryCards userTotalExp={userExp?.total} />
 
-          {/* Analytics */}
           <div className="grid gap-6 xl:grid-cols-2">
             <CalenderExpenseGraph />
             <CategoryExpenseChart />
           </div>
 
-          {/* Charts + Transactions */}
           <div className="grid gap-6 xl:grid-cols-2">
             <GroupExpenseChart />
             <RecentTransactions />
           </div>
 
-          {/* Footer Card */}
           <EndMessage />
         </>
       )}
     </div>
-  );
+  </>
+);
 }

@@ -62,3 +62,5 @@ export const getExpDetails = (formData) => API.post('/api/expense/v1/view', form
 export const getSettle = (formData) => API.post('/api/group/v1/settlement', formData, accessHeader)
 
 export const makeSettle = (formData) => API.post('/api/group/v1/makeSettlement', formData, accessHeader)
+
+export const aiChat = (formData) => API.post('/api/ai/chat', formData, accessHeader)

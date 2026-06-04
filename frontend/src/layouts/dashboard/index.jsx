@@ -4,6 +4,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardSidebar from "./DashboardSidebar";
 
+import AIAssistant from "../../components/ai/AIAssistant";
+
 export default function DashboardLayout() {
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -45,6 +47,10 @@ export default function DashboardLayout() {
         >
           <Outlet />
         </main>
+
+        {/* AI Assistant Floating Button */}
+        <AIAssistant />
+
       </div>
     </div>
   );

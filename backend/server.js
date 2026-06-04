@@ -10,6 +10,7 @@ dotenv.config()
 const usersRouter = require('./routes/user.routes')
 const groupRouter = require('./routes/group.routes')
 const expenseRouter = require('./routes/expense.routes')
+const aiRouter = require('./routes/ai.routes')
 
 const app = express()
 
@@ -29,6 +30,8 @@ mongoose
 app.use('/api/users', usersRouter)
 app.use('/api/group', apiAuth.validateToken, groupRouter)
 app.use('/api/expense', apiAuth.validateToken, expenseRouter)
+
+app.use('/api/ai', apiAuth.validateToken, aiRouter);
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
     app.use(express.static('client/build'));
