@@ -60,7 +60,6 @@ exports.createGroup = async (req, res) => {
             })
         }
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message} ${err.stack}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -89,7 +88,6 @@ exports.viewGroup = async (req, res) => {
             group: group,
         })
     } catch(err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -122,7 +120,6 @@ exports.findUserGroup = async (req, res) => {
             groups: groups
         })
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -198,7 +195,6 @@ exports.editGroup = async (req, res) => {
             })
         }
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -230,7 +226,6 @@ exports.deleteGroup = async (req, res) => {
             response: delete_group
         })
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -274,7 +269,6 @@ exports.makeSettlement = async(req, res) =>{
         response: id
     })
     }catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -375,7 +369,6 @@ exports.groupBalanceSheet = async(req, res) =>{
             data: splitCalculator(group.split[0])
         })
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })

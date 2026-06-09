@@ -43,7 +43,6 @@ exports.userReg = async (req, res) => {
             }
         }
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -86,7 +85,6 @@ exports.userLogin = async (req, res) => {
             })
         }
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message} ${err.stack}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -118,7 +116,6 @@ exports.viewUser = async (req, res) => {
             user: user
         })
     } catch(err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -154,7 +151,6 @@ exports.emailList = async (req, res) => {
             user: emailList
         })
     } catch(err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -186,7 +182,6 @@ exports.deleteUser = async (req, res) => {
             response: delete_response
         })
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -230,7 +225,6 @@ exports.editUser = async (req, res) => {
             })
         }
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
         res.status(err.status || 500).json({
             message: err.message
         })
@@ -286,7 +280,6 @@ exports.updatePassword = async (req, res) => {
             userId: update_response
         })
     } catch (err) {
-        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message} ${err.stack}`)
         res.status(err.status || 500).json({
             message: err.message
         })

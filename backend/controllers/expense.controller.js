@@ -265,7 +265,6 @@ exports.viewUserExpense = async (req, res) => {
         for (var expense of userExpense) {
             totalAmount += expense['expensePerMember']
         }
-        console.log(userExpense);
         res.status(200).json({
             status: "Success",
             expense: userExpense,

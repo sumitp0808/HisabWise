@@ -14,7 +14,6 @@ try {
 
     }
 
-    console.log(req.user);
     const userEmail = req.user;
 
     const analytics = await buildUserAnalytics(userEmail);
