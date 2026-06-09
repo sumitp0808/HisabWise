@@ -18,7 +18,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://hisab-wise-sumits-projects-3738d068.vercel.app"
-  ]
+  ],
+  credentials: true
 }));
 app.use(express.json())
 
