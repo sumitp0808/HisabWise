@@ -64,7 +64,7 @@ Provide:
 3. Any useful financial insight.
 `;
 
-    const response = await ai.models.generateContent({model: "gemini-2.5-flash", contents: prompt});
+    const response = await ai.models.generateContent({model: "gemini-2.5-flash-lite", contents: prompt});
 
     return res.status(200).json({
       answer: response.text,
