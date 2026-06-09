@@ -4,7 +4,7 @@ import { useRoutes } from "react-router-dom";
 import configData from "./config.json"
 
 import DashboardLayout from "./layouts/dashboard";
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/dashboard';
 
 //Pages
 import Login from './components/Login';
