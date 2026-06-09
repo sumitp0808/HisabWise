@@ -76,21 +76,6 @@ export default function Profile() {
               className="mx-auto h-60 w-60 rounded-full object-cover"
             />
           )}
-
-          <p className="mt-4 text-sm text-gray-500">
-            *The profile picture is taken
-            from Gravatar
-          </p>
-
-          <a
-            href="https://en.gravatar.com/support/faq/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm text-blue-600 hover:underline"
-          >
-            Know how to set Gravatar
-            profile pic!
-          </a>
         </div>
 
         {/* Details Section */}

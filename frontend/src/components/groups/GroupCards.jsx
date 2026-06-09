@@ -104,8 +104,7 @@ export default function GroupCards({
                   key={member}
                   src={gravatarUrl(member, {
                     size: 350,
-                    default:
-                      configData.USER_DEFAULT_LOGO_URL,
+                    default: configData.USER_DEFAULT_LOGO_URL,
                   })}
                   alt={member}
                   className="h-10 w-10 rounded-full border-2 border-white object-cover"

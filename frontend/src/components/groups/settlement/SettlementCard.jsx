@@ -27,8 +27,7 @@ const SettlementCard = ({mySettle, currencyType, setReload}) => {
           <img
             src={gravatarUrl(mySettle[0], {
               size: 200,
-              default:
-                configData.USER_DEFAULT_LOGO_URL,
+              default: configData.USER_DEFAULT_LOGO_URL,
             })}
             alt="profile"
             className="h-14 w-14 rounded-full object-cover"

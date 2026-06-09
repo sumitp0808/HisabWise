@@ -5,14 +5,10 @@ export default function About() {
       {/* Header */}
       <div className="text-center">
         <img
-          src="/logo.png"
+          src="/static/logo.png"
           alt="HisabWise"
-          className="mx-auto h-20 w-20"
+          className="mx-auto h-20 w-auto"
         />
-
-        <h1 className="mt-4 text-4xl font-bold">
-          HisabWise
-        </h1>
 
         <p className="mt-4 text-gray-600">
           Group Expense Splitting Application built
@@ -117,25 +113,13 @@ npm start`}
         </div>
       </section>
 
-      {/* License */}
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-bold">
-          License
-        </h2>
-
-        <p className="text-gray-700">
-          This project is released under the MIT
-          License.
-        </p>
-      </section>
-
       <div className="mt-12">
         <footer className="mt-12 border-t pt-6 text-center text-sm text-gray-500">
   <p>
     © Sumit Prajapati | MNNIT
   </p>
   <a
-    href="https://github.com/sumitp0808@gmail.com/HisabWise"
+    href="https://github.com/sumitp0808/HisabWise"
     target="_blank"
     rel="noreferrer"
     className="mt-3 inline-block text-blue-600 hover:underline"
