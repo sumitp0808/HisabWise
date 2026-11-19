@@ -1,85 +1,69 @@
-import { useState } from "react";
-import axios from "axios";
-import {Bot, Send, X} from "lucide-react";
-import * as api from '../../api'
+import { useEffect, useRef, useState } from "react";
+import { Bot, Send, X } from "lucide-react";
+import * as api from "../../api";
 
 import MessageBubble from "./MessageBubble";
 
-export default function ChatWindow({onClose}) {
+export default function ChatWindow({ onClose }) {
   const [question, setQuestion] = useState("");
-
   const [loading, setLoading] = useState(false);
-
   const [messages, setMessages] = useState([
-      {
-        role: "assistant",
-        content:
-          "Hi! I can analyze your expenses, groups, balances and spending habits.",
-      },
-    ]);
+    {
+      role: "assistant",
+      content: "Hi! I can help with your groups, balances, expenses and spending.",
+    },
+  ]);
+  const messagesEndRef = useRef(null);
 
-  const sendMessage = async (text = question) => {
-    if (!text.trim()) return;
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
 
-    const token = JSON.parse(localStorage.getItem("profile"))?.accessToken;
+  const sendMessage = async (event) => {
+    event.preventDefault();
+    const text = question.trim();
+    if (!text || loading) return;
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "user",
-        content: text,
-      },
-    ]);
+    const history = messages.slice(-14).map(({ role, content }) => ({ role, content }));
+    setMessages((previous) => [...previous, { role: "user", content: text }]);
 
     setQuestion("");
-
     setLoading(true);
 
     try {
-      const response = await api.aiChat({question: text})
-
-      setMessages((prev) => [
-        ...prev,
+      const response = await api.aiChat({ message: text, history });
+      const answer = response.data?.answer?.trim();
+      setMessages((previous) => [
+        ...previous,
         {
           role: "assistant",
-          content: response.data.answer,
+          content: answer || "I couldn't find an answer. Please try asking another way.",
         },
       ]);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
+    } catch (error) {
+      setMessages((previous) => [
+        ...previous,
         {
           role: "assistant",
-          content:
-            "Sorry, something went wrong.",
+          content: error.response?.data?.message || "Sorry, I couldn't process that. Please try again.",
         },
       ]);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
-    <div className="fixed top-20 bottom-24 right-6 z-9999 flex w-105 flex-col overflow-hidden rounded-2xl border bg-white shadow-2xl">
-      {/* Header */}
-
-      <div
-        className="flex items-center justify-between bg-blue-600 px-4 py-4 text-white"
-      >
+    <div className="fixed inset-x-4 top-20 bottom-24 z-[9999] flex flex-col overflow-hidden rounded-2xl border bg-white shadow-2xl sm:inset-x-auto sm:right-6 sm:w-[26rem]">
+      <div className="flex items-center justify-between bg-blue-600 px-4 py-4 text-white">
         <div className="flex items-center gap-2">
           <Bot size={22} />
-
-          <span className="font-semibold">
-            Hisaab AI
-          </span>
+          <span className="font-semibold">HisabWise AI</span>
         </div>
-
-        <button onClick={onClose}>
+        <button type="button" onClick={onClose} aria-label="Close chat">
           <X size={20} />
         </button>
       </div>
-      
-      {/* Messages */}
 
       <div className="flex-1 space-y-3 overflow-y-auto p-4">
         {messages.map((msg, index) => (
@@ -91,31 +75,33 @@ export default function ChatWindow({onClose}) {
         ))}
 
         {loading && (
-          <div className="text-sm text-gray-500">
+          <div className="flex items-center gap-2 text-sm text-gray-500" role="status">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600" />
             Thinking...
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
-
       <div className="border-t p-3">
-        <div className="flex gap-2">
+        <form className="flex gap-2" onSubmit={sendMessage}>
           <input
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            onKeyDown={(e) => {if (e.key === "Enter") sendMessage();}}
             placeholder="Ask about your expenses..."
-            className="flex-1 rounded-lg border px-4 py-3 outline-none"
+            aria-label="Ask HisabWise AI"
+            disabled={loading}
+            className="min-w-0 flex-1 rounded-lg border px-4 py-3 outline-none focus:border-blue-500 disabled:bg-gray-50"
           />
-
           <button
-            onClick={() => sendMessage()}
-            className="rounded-lg bg-blue-600 px-4 text-white"
+            type="submit"
+            disabled={loading || !question.trim()}
+            aria-label="Send message"
+            className="rounded-lg bg-blue-600 px-4 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Send size={18} />
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

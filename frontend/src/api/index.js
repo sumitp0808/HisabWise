@@ -1,16 +1,24 @@
 import axios from 'axios'
 
 
-const API = axios.create({ baseURL: 'https://hisabwise-backend.onrender.com'});
-// const API = axios.create({ baseURL: 'http://localhost:3001'})
-
-const profile = JSON.parse(localStorage.getItem('profile'))
+// const API = axios.create({ baseURL: 'https://hisabwise-backend.onrender.com'});
+const API = axios.create({ baseURL: 'http://localhost:3001'})
 
 const accessHeader = {
-    headers: {
-      'Authorization': `token ${profile ? profile.accessToken : null}`
+    headers: {}
+}
+
+API.interceptors.request.use((config) => {
+    const profile = JSON.parse(localStorage.getItem('profile') || 'null')
+
+    if (profile?.accessToken) {
+      config.headers.Authorization = `token ${profile.accessToken}`
+    } else {
+      delete config.headers.Authorization
     }
-  }
+
+    return config
+})
 
 export const loginIn = (formData) => API.post('/api/users/v1/login', formData)
 
